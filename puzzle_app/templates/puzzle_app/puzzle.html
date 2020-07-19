@@ -1,0 +1,17 @@
+{% extends "puzzle_app/layout.html" %}
+{% load static %}
+
+{% block title %}
+
+<h1>Welcome, you chose puzzle {{puzzle.id}}</h1>
+
+{% endblock %}
+
+
+{% block body %}
+
+<p>{{puzzle.description}} : {{puzzle.text}}</p>
+
+
+<a href="{% url 'index' %}">Back to home</a>
+{% endblock %}

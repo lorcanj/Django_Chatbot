@@ -1,0 +1,21 @@
+{% extends "puzzle_app/layout.html" %}
+{% load static %}
+
+
+
+{% block head %}
+    <link href="{% static 'puzzle_app/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <h1>Puzzles</h1>
+    {% for puzzle in puzzles %}
+
+        <li>
+             Puzzle: 
+             <a href="{% url 'puzzle' puzzle.id %}">
+                 {{ puzzle.description }}
+             </a>
+        </li>
+    {% endfor %}
+{% endblock %}
