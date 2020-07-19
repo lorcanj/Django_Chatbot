@@ -12,6 +12,17 @@
 
 <p>{{puzzle.description}} : {{puzzle.text}}</p>
 
+<form action="{% url 'guess %'}" method="post">
+    <div class="form-group">
+        <input class="form-control" name="guess" placeholder="Enter guess here">
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary">Enter guess</button>
+    </div>
+</form>
+
+
 
 <a href="{% url 'index' %}">Back to home</a>
 {% endblock %}
