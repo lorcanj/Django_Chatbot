@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from Attempto import *
+from .Attempto import *
 from .models import Puzzle
 
 # Create your views here.
