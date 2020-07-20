@@ -1,7 +1,9 @@
+from django import forms
 from django.http import HttpResponse
 from django.shortcuts import render
 from .Attempto import *
 from .models import Puzzle
+
 
 # Create your views here.
 def index(request):
@@ -10,14 +12,23 @@ def index(request):
     })
 
 def puzzle(request, puzzle_id):
-    puzzle = Puzzle.objects.get(pk=puzzle_id)
-    return render(request, "puzzle_app/puzzle.html", {
-        "puzzle": puzzle
-    })
+    if request.method == "GET":
+        puzzle = Puzzle.objects.get(pk=puzzle_id)
+        return render(request, "puzzle_app/puzzle.html", {
+            "puzzle": puzzle
+        })
+    if request.method == "POST":
+        guess = request.POST.get("user_guess")
+        client = createClient()
+        axiom = "There is a man."
+        theorm = guess
+        answer = proveStatement(axiom, theorm, client)
+        return HttpResponse(answer)
 
 def guess(request):
-    guess = request.form.get("user_guess")
-    return render(request, )
+    if request.method == "POST":
+        guess = request.POST
+        return HttpResponse("Hello")
 
 
 

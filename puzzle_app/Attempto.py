@@ -20,10 +20,23 @@ def checkForOutput(input):
             return "WhyNot"
     return "Error"
 
+def returnErrors(input):
+    error = ""
+    for i in range(len(input.Message)):
+        error += "Problem: " + input.Message[i].Subject + "\n"
+        error += "Solution to fix: " + input.Message[i].Description "\n"
+
+
 def printErrors(input):
     for i in range(len(input.Message)):
         print("Problem: " + input.Message[i].Subject)
         print("Solution to fix: " + input.Message[i].Description)
+
+def returnProof(input):
+    proof = ""
+    for i in range(len(input.Proof)):
+        for j in range(len(input.Proof[i].UsedAxioms.Axiom)):
+            proof += input.Proof[i].UsedAxioms.Axiom[j] + "\n"
 
 def printProof(input):
     print("That is correct.")
@@ -31,8 +44,20 @@ def printProof(input):
         for j in range(len(input.Proof[i].UsedAxioms.Axiom)):
             print(input.Proof[i].UsedAxioms.Axiom[j])
 
+def returnWhyNot(input):
+    return input.WhyNot[0].Word
+
 def printWhyNot(input):
     print(input.WhyNot[0].Word)
+
+def checkAnswerType(answer):
+    if (checkForOutput(answer) == "Message"):
+        return returnErrors(answer)
+    elif (checkForOutput(answer) == "Proof"):
+        return returnProof(answer)
+    elif (checkForOutput(answer) == "WhyNot")
+        return returnWhyNot(answer)
+
 
 def main():
     client = createClient()

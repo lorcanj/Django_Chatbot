@@ -2,36 +2,20 @@
 {% load static %}
 
 {% block head %}
-    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <title>Puzzles</title>
     <h1>Welcome, you chose puzzle {{puzzle.id}}</h1>
 {% endblock %}
 
 
 {% block body %}
-<div id="app"></div>
-
-<script type="text/babel">
-    class Test extends React.Component {
-        render(){
-            return (
-                <h1>Hello</h1>
-            );
-        }
-    }
-    ReactDOM.render(<Test />, document.querySelector('#app'));
-
-</script>
 
 <p>{{puzzle.description}} : {{puzzle.text}}</p>
 
-<form>
-    <input type="text" name = "guess">
+<form action="{% url 'puzzle' puzzle_id=puzzle.id %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="user_guess">
     <input type="submit">
 </form>
-
 
 
 <a href="{% url 'index' %}">Back to home</a>
