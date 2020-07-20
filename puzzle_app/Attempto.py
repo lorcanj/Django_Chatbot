@@ -24,7 +24,8 @@ def returnErrors(input):
     error = ""
     for i in range(len(input.Message)):
         error += "Problem: " + input.Message[i].Subject + "\n"
-        error += "Solution to fix: " + input.Message[i].Description "\n"
+        error += "Solution to fix: " + input.Message[i].Description + "\n"
+    return error
 
 
 def printErrors(input):
@@ -37,6 +38,7 @@ def returnProof(input):
     for i in range(len(input.Proof)):
         for j in range(len(input.Proof[i].UsedAxioms.Axiom)):
             proof += input.Proof[i].UsedAxioms.Axiom[j] + "\n"
+    return proof
 
 def printProof(input):
     print("That is correct.")
@@ -55,9 +57,8 @@ def checkAnswerType(answer):
         return returnErrors(answer)
     elif (checkForOutput(answer) == "Proof"):
         return returnProof(answer)
-    elif (checkForOutput(answer) == "WhyNot")
+    elif (checkForOutput(answer) == "WhyNot"):
         return returnWhyNot(answer)
-
 
 def main():
     client = createClient()

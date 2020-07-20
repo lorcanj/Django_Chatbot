@@ -13,7 +13,7 @@
 
 <form action="{% url 'puzzle' puzzle_id=puzzle.id %}" method="post">
     {% csrf_token %}
-    <input type="text" name="user_guess">
+    {{ form }}
     <input type="submit">
 </form>
 
