@@ -13,6 +13,12 @@ function count() {
     }
 }
 
+function appear() {
+    document.querySelector('#test').style.display = 'block';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('button').onclick = hello;
+    document.querySelector('#test').style.display = 'none';
+    document.querySelector('#increase').onclick = hello;
+    document.querySelector('#disappear').onclick = appear;
 });
