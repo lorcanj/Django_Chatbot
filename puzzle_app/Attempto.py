@@ -1,5 +1,14 @@
 from suds.client import Client
 
+
+class AttemptoError:
+    def __init__(self, error_subject, error_description):
+        self.error_subject = error_subject
+        self.error_description = error_description
+
+    def print(self):
+        print(f"{self.error_subject} and {self.error_description}")
+
 def createClient():
     url = "http://attempto.ifi.uzh.ch/race_files/race.wsdl"
     client = Client(url)
@@ -22,10 +31,12 @@ def checkForOutput(input):
 
 def returnErrors(input):
     error = ""
+    error_list = []
     for i in range(len(input.Message)):
         error += "Problem: " + input.Message[i].Subject + "\n"
         error += "Solution to fix: " + input.Message[i].Description + "\n"
-    return error
+        error_list.append(AttemptoError(input.Message[i].Subject, input.Message[i].Description))
+    return error_list
 
 
 def printErrors(input):
@@ -49,9 +60,6 @@ def printProof(input):
 def returnWhyNot(input):
     return input.WhyNot[0].Word
 
-def printWhyNot(input):
-    print(input.WhyNot[0].Word)
-
 def checkAnswerType(answer):
     if (checkForOutput(answer) == "Message"):
         return returnErrors(answer)
@@ -60,6 +68,7 @@ def checkAnswerType(answer):
     elif (checkForOutput(answer) == "WhyNot"):
         return returnWhyNot(answer)
 
+## below was created for testing the output
 def main():
     client = createClient()
     axiom = "Every man is a human. Every woman is a human. Mary is a woman. John is a man."

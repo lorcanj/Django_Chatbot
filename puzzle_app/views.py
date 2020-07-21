@@ -22,6 +22,8 @@ def puzzle(request, puzzle_id):
         return render(request, "puzzle_app/puzzle.html", {
             "puzzle": puzzle, "form": GuessForm()
         })
+    
+    # need to change the variable names from theorm and axiom as not clear
     if request.method == "POST":
         form = GuessForm(request.POST)
         if form.is_valid():
