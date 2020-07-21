@@ -33,6 +33,7 @@ def puzzle(request, puzzle_id):
             theorm = guess
             answer = proveStatement(axiom, theorm, client)
             response = checkAnswerType(answer)
+            #return render(request, "puzzle_app/puzzle.html")
             return HttpResponse(response)
         else:
             return render(request, "puzzle_app/puzzle.html", {
