@@ -1,5 +1,5 @@
 from django import forms
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from .Attempto import *
 from .models import Puzzle
@@ -14,7 +14,10 @@ def index(request):
     })
 
 def puzzle(request, puzzle_id):
-    puzzle = Puzzle.objects.get(pk=puzzle_id)
+    try:
+        puzzle = Puzzle.objects.get(pk=puzzle_id)
+    except Puzzle.DoesNotExist:
+        raise Http404("Puzzle not found")
     if request.method == "GET":
         return render(request, "puzzle_app/puzzle.html", {
             "puzzle": puzzle, "form": GuessForm()
@@ -33,11 +36,3 @@ def puzzle(request, puzzle_id):
             return render(request, "puzzle_app/puzzle.html", {
             "puzzle": puzzle, "form": form
         })
-
-def guess(request):
-    if request.method == "POST":
-        guess = request.POST
-        return HttpResponse("Hello")
-
-
-
