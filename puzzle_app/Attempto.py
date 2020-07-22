@@ -60,12 +60,15 @@ def returnWhyNot(input):
     return input.WhyNot[0].Word
 
 def checkAnswerType(answer):
+    # here is where the ACE text is not correctly formed
     if (checkForOutput(answer) == "Message"):
-        return returnErrors(answer)
+        return ("Message", returnErrors(answer))
+    # here is where the ACE text is formed and correct semantic deduction
     elif (checkForOutput(answer) == "Proof"):
-        return returnProof(answer)
+        return ("Proof", returnProof(answer))
+    # here is correct syntax but not correct semantics
     elif (checkForOutput(answer) == "WhyNot"):
-        return returnWhyNot(answer)
+        return ("WhyNot", returnWhyNot(answer))
 
 ## below was created for testing the output
 def main():

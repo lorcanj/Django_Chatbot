@@ -24,6 +24,8 @@ def puzzle(request, puzzle_id):
         })
     
     # need to change the variable names from theorm and axiom as not clear
+
+    # need a variable here to check the response type to then properly create the UI for the output
     if request.method == "POST":
         form = GuessForm(request.POST)
         if form.is_valid():

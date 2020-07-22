@@ -9,10 +9,14 @@
 
 {% block body %}
 
-<table class="table" style="width:80%">
+
+<table class="table" style="width: 80%">
+{% if responses.0 == "Proof" %}
+    <h1>Yes</h1>
+{% elif responses.0 == "Error" %}
     <tr>
-      <th>Problem/ Problem word</th>
-      <th>Fix</th>
+        <th>Problem/ Problem word</th>
+        <th>Fix</th>
     </tr>
     {% for response in responses %}
     <tr>
@@ -20,8 +24,37 @@
       <td>{{response.error_description}}</td>
     </tr>
     {% endfor %}
+{% elif responses.0 == "Message" %}
+<h1>Matched message</h1>
+
+{% else %}
+<h1>Didn't match anything</h1>
+{% endif %}
+
+
+
+
+
 </table>
 
+
+    <!--
+<table class="table" style="width:80%">
+    <tr>
+      <th>Problem/ Problem word</th>
+      <th>Fix</th>
+    </tr>
+    
+
+    {% for response in responses %}
+    <tr>
+      <td>{{response.error_subject}}</td>
+      <td>{{response.error_description}}</td>
+    </tr>
+    {% endfor %}
+   
+</table>
+ -->
 <a href="{% url 'puzzle' puzzle.id %}">Back</a>
 
 {% endblock %}
