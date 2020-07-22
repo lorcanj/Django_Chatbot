@@ -6,8 +6,8 @@ class AttemptoError:
         self.error_subject = error_subject
         self.error_description = error_description
 
-    def print(self):
-        print(f"{self.error_subject} and {self.error_description}")
+    def __str__(self):
+        return (f"{self.error_subject} and {self.error_description}")
 
 def createClient():
     url = "http://attempto.ifi.uzh.ch/race_files/race.wsdl"
@@ -30,12 +30,11 @@ def checkForOutput(input):
     return "Error"
 
 def returnErrors(input):
-    error = ""
     error_list = []
     for i in range(len(input.Message)):
-        error += "Problem: " + input.Message[i].Subject + "\n"
-        error += "Solution to fix: " + input.Message[i].Description + "\n"
-        error_list.append(AttemptoError(input.Message[i].Subject, input.Message[i].Description))
+        error = AttemptoError(input.Message[i].Subject, input.Message[i].Description)
+        #error_list.append(error.__str__())
+        error_list.append(error)
     return error_list
 
 

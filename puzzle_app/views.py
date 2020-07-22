@@ -32,9 +32,11 @@ def puzzle(request, puzzle_id):
             axiom = puzzle.text
             theorm = guess
             answer = proveStatement(axiom, theorm, client)
-            response = checkAnswerType(answer)
-            #return render(request, "puzzle_app/puzzle.html")
-            return HttpResponse(response)
+            responses = checkAnswerType(answer)
+            return render(request, "puzzle_app/output.html", {
+                "responses" : responses, "puzzle":puzzle
+            })
+            #return HttpResponse(response)
         else:
             return render(request, "puzzle_app/puzzle.html", {
             "puzzle": puzzle, "form": form

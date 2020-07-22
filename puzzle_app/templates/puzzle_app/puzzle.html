@@ -4,7 +4,6 @@
 {% block head %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'puzzle_app/css/styles.css' %}">
-    <script src="{% static 'puzzle_app/js/puzzleList.js' %}"></script>
     <title>Puzzles</title>
     <h1>Welcome, you chose puzzle {{puzzle.id}}</h1>
 {% endblock %}
@@ -20,32 +19,6 @@
     <input type="submit">
 </form>
 
-<h1 id="test">This is some test text</h1>
-
-<h1 id="number">0</h1>
-<button id="increase">Click here</button>
-
-<button id="disappear">disappear</button>
-
 <a href="{% url 'index' %}">Back to home</a>
 
-<div class="container" id="error_table">
-  <table class="table">
-    <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Age</th>
-    </tr>
-    <tr>
-      <td>Jill</td>
-      <td>Smith</td>
-      <td>50</td>
-    </tr>
-    <tr>
-      <td>Eve</td>
-      <td>Jackson</td>
-      <td>94</td>
-    </tr>
-  </table> 
-</div>
 {% endblock %}

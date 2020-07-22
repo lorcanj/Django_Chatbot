@@ -1,0 +1,27 @@
+{% extends "puzzle_app/layout.html" %}
+{% load static %}
+
+
+{% block head %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'puzzle_app/css/styles.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<table class="table" style="width:80%">
+    <tr>
+      <th>Problem/ Problem word</th>
+      <th>Fix</th>
+    </tr>
+    {% for response in responses %}
+    <tr>
+      <td>{{response.error_subject}}</td>
+      <td>{{response.error_description}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="{% url 'puzzle' puzzle.id %}">Back</a>
+
+{% endblock %}
