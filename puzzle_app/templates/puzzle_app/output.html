@@ -12,10 +12,12 @@
 
 <table class="table" style="width: 80%">
 {% if responses.0 == "Proof" %}
-
+    <tr>
+        <th>Proofs</th>
+    </tr>
 {% for response in responses %}
     <tr>
-        <td>{{response}}</td>
+        <td>{{responses.1}}</td>
     </tr>
 {% endfor %}
 {% elif responses.0 == "Error" %}

@@ -72,6 +72,11 @@ def printProof(input):
 def returnWhyNot(input):
     return input.WhyNot[0].Word
 
+# PROBLEM BECAUSE YOU ARE RETURNING A TUPLE
+# COULD JUST SEND 2 DIFFERENT VARIABLES OR SAVE AS 2 DIFFERENT VARIABLES
+# TO MAKE IT EASIER TO PARSE AS CONVOLUTED AT THE MOMENT
+
+
 def checkAnswerType(answer):
     # here is where the ACE text is not correctly formed
     if (checkForOutput(answer) == "Message"):
@@ -88,9 +93,17 @@ def main():
     client = createClient()
     axiom = "Every man is a human. Every woman is a human. Mary is a woman. John is a man."
     print(axiom)
-    theorm = input("Please enter a true statement: \n")
+    theorm = "There is a man."
+    # theorm = input("Please enter a true statement: \n")
     # theorm = input("Enter an axiom: \n")
     answer = proveStatement(axiom, theorm, client)
+    print(answer)
+    """
+    array = returnProof(answer)
+    for ar in array:
+        print(ar)
+    """
+    """
     if (checkForOutput(answer) == "Message"):
         printErrors(answer)
     elif (checkForOutput(answer) == "Proof"):
@@ -101,6 +114,6 @@ def main():
         # This will only run through once so not too bad for a loop
         for item in answer.WhyNot[0]:
             print(item)
-
+    """
 if __name__ == "__main__":
     main()
