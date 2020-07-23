@@ -1,6 +1,5 @@
 from suds.client import Client
 
-
 class AttemptoError:
     def __init__(self, error_subject, error_description):
         self.error_subject = error_subject
@@ -8,6 +7,12 @@ class AttemptoError:
 
     def __str__(self):
         return (f"{self.error_subject} and {self.error_description}")
+
+# need to finish this
+class AttemptoProof:
+    def __init__(self, axiom, used_axiom):
+        #need to finish this off
+        print("Check line 15")
 
 def createClient():
     url = "http://attempto.ifi.uzh.ch/race_files/race.wsdl"
@@ -33,22 +38,30 @@ def returnErrors(input):
     error_list = []
     for i in range(len(input.Message)):
         error = AttemptoError(input.Message[i].Subject, input.Message[i].Description)
-        #error_list.append(error.__str__())
         error_list.append(error)
     return error_list
-
 
 def printErrors(input):
     for i in range(len(input.Message)):
         print("Problem: " + input.Message[i].Subject)
         print("Solution to fix: " + input.Message[i].Description)
 
+# need to update this with the proof class to make it easier to output
+# to the screen
+def returnProof(input):
+    proof = []
+    for i in range(len(input.Proof[0].UsedAxioms.Axiom)):
+        proof.append(input.Proof[0].UsedAxioms.Axiom[i])
+    return proof
+
+"""
 def returnProof(input):
     proof = ""
     for i in range(len(input.Proof)):
         for j in range(len(input.Proof[i].UsedAxioms.Axiom)):
             proof += input.Proof[i].UsedAxioms.Axiom[j] + "\n"
     return proof
+"""
 
 def printProof(input):
     print("That is correct.")

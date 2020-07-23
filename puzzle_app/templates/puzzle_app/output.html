@@ -12,28 +12,35 @@
 
 <table class="table" style="width: 80%">
 {% if responses.0 == "Proof" %}
-    <h1>Yes</h1>
+
+{% for response in responses %}
+    <tr>
+        <td>{{response}}</td>
+    </tr>
+{% endfor %}
 {% elif responses.0 == "Error" %}
     <tr>
         <th>Problem/ Problem word</th>
         <th>Fix</th>
     </tr>
-    {% for response in responses %}
+{% for response in responses %}
+
     <tr>
-      <td>{{response.error_subject}}</td>
-      <td>{{response.error_description}}</td>
+        <td>{{response.error_subject}}</td>
+        <td>{{response.error_description}}</td>
     </tr>
-    {% endfor %}
+
+{% endfor %}
+
 {% elif responses.0 == "Message" %}
-<h1>Matched message</h1>
+
+    <h1>Matched message</h1>
 
 {% else %}
-<h1>Didn't match anything</h1>
+
+  <h1>Didn't match anything</h1>
+
 {% endif %}
-
-
-
-
 
 </table>
 
