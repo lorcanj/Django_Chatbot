@@ -11,21 +11,40 @@
 
 
 <table class="table" style="width: 80%">
-{% if responses.0 == "Proof" %}
+{% if answer_type == "Proof" %}
     <tr>
         <th>Proofs</th>
     </tr>
-{% for response in responses %}
+{% for response in response_text %}
     <tr>
-        <td>{{responses.1}}</td>
+        <td>{{response}}</td>
     </tr>
 {% endfor %}
-{% elif responses.0 == "Error" %}
+
+{% elif answer_type == "WhyNot" %}
+<!--  # here is correct syntax but not correct semantics -->
+
+    <tr>
+        <th>Problems</th>
+    </tr>
+
+<!-- below is nested loop, O(n^2) but won't run for large n-->
+{% for response in response_text %}
+    {% for r in response %}
+    <tr>
+        <td>{{r}}</td>
+    </tr>
+    {% endfor %}
+{% endfor %}
+<!--# here is where the ACE text is not correctly formed-->
+{% elif answer_type == "Message" %}
+
     <tr>
         <th>Problem/ Problem word</th>
         <th>Fix</th>
     </tr>
-{% for response in responses %}
+
+{% for response in response_text %}
 
     <tr>
         <td>{{response.error_subject}}</td>
@@ -33,10 +52,6 @@
     </tr>
 
 {% endfor %}
-
-{% elif responses.0 == "Message" %}
-
-    <h1>Matched message</h1>
 
 {% else %}
 

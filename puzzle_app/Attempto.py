@@ -8,11 +8,14 @@ class AttemptoError:
     def __str__(self):
         return (f"{self.error_subject} and {self.error_description}")
 
+"""
 # need to finish this
 class AttemptoProof:
     def __init__(self, axiom, used_axiom):
         #need to finish this off
         print("Check line 15")
+"""
+
 
 def createClient():
     url = "http://attempto.ifi.uzh.ch/race_files/race.wsdl"
@@ -70,11 +73,12 @@ def printProof(input):
             print(input.Proof[i].UsedAxioms.Axiom[j])
 
 def returnWhyNot(input):
-    return input.WhyNot[0].Word
-
-# PROBLEM BECAUSE YOU ARE RETURNING A TUPLE
-# COULD JUST SEND 2 DIFFERENT VARIABLES OR SAVE AS 2 DIFFERENT VARIABLES
-# TO MAKE IT EASIER TO PARSE AS CONVOLUTED AT THE MOMENT
+    whyNot = []
+    for i in range(len(input.WhyNot)):
+        whyNot.append(input.WhyNot[i])
+    return whyNot
+    
+    #input.WhyNot[0].Word
 
 
 def checkAnswerType(answer):
