@@ -1,9 +1,13 @@
 from django.db.models import Max
 from django.test import Client, TestCase
 
+# problem when using client class from suds and django
+#import suds
+#from .Attempto import *
 from .models import Puzzle
-# Create your tests here.
 
+
+# Create your tests here.
 
 class PuzzleTestCase(TestCase):
 
@@ -40,4 +44,13 @@ class PuzzleTestCase(TestCase):
         self.assertEqual(response.status_code, 404)
 
     
+class AttemptoTestCase(TestCase):
+    """
+    def test_errorReturn(self):
+        client = suds.client.Client("http://attempto.ifi.uzh.ch/race_files/race.wsdl")
+        answer = proveStatement("There is a woman.", "There is a woman.", client)
+        print(type(answer))
+        self.assertTrue(len(answer) > 0)
+    """
+
 

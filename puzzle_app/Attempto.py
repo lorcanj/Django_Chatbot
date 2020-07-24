@@ -8,14 +8,6 @@ class AttemptoError:
     def __str__(self):
         return (f"{self.error_subject} and {self.error_description}")
 
-"""
-# need to finish this
-class AttemptoProof:
-    def __init__(self, axiom, used_axiom):
-        #need to finish this off
-        print("Check line 15")
-"""
-
 
 def createClient():
     url = "http://attempto.ifi.uzh.ch/race_files/race.wsdl"
@@ -44,42 +36,17 @@ def returnErrors(input):
         error_list.append(error)
     return error_list
 
-def printErrors(input):
-    for i in range(len(input.Message)):
-        print("Problem: " + input.Message[i].Subject)
-        print("Solution to fix: " + input.Message[i].Description)
-
-# need to update this with the proof class to make it easier to output
-# to the screen
 def returnProof(input):
     proof = []
     for i in range(len(input.Proof[0].UsedAxioms.Axiom)):
         proof.append(input.Proof[0].UsedAxioms.Axiom[i])
     return proof
 
-"""
-def returnProof(input):
-    proof = ""
-    for i in range(len(input.Proof)):
-        for j in range(len(input.Proof[i].UsedAxioms.Axiom)):
-            proof += input.Proof[i].UsedAxioms.Axiom[j] + "\n"
-    return proof
-"""
-
-def printProof(input):
-    print("That is correct.")
-    for i in range(len(input.Proof)):
-        for j in range(len(input.Proof[i].UsedAxioms.Axiom)):
-            print(input.Proof[i].UsedAxioms.Axiom[j])
-
 def returnWhyNot(input):
     whyNot = []
     for i in range(len(input.WhyNot)):
         whyNot.append(input.WhyNot[i])
     return whyNot
-    
-    #input.WhyNot[0].Word
-
 
 def checkAnswerType(answer):
     # here is where the ACE text is not correctly formed
@@ -98,26 +65,8 @@ def main():
     axiom = "Every man is a human. Every woman is a human. Mary is a woman. John is a man."
     print(axiom)
     theorm = "There is a man."
-    # theorm = input("Please enter a true statement: \n")
-    # theorm = input("Enter an axiom: \n")
     answer = proveStatement(axiom, theorm, client)
     print(answer)
-    """
-    array = returnProof(answer)
-    for ar in array:
-        print(ar)
-    """
-    """
-    if (checkForOutput(answer) == "Message"):
-        printErrors(answer)
-    elif (checkForOutput(answer) == "Proof"):
-        printProof(answer)
-    elif (checkForOutput(answer) == "WhyNot"):
-        # doing this because cannot save the value as a string otherwise, however is jank
-        print("The following cannot be proved: ")
-        # This will only run through once so not too bad for a loop
-        for item in answer.WhyNot[0]:
-            print(item)
-    """
+    
 if __name__ == "__main__":
     main()
